@@ -1,0 +1,37 @@
+# This is the Argo CD Application manifest
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  # The name of the application in Argo CD
+  name: my-python-app
+  # Argo CD applications must be in the argocd namespace
+  namespace: argocd
+spec:
+  # The project this application belongs to
+  project: default
+
+  # Source defines the location of the application's configuration
+  source:
+    # IMPORTANT: Change this URL to your own Git repository
+    repoURL: https://github.com/your-username/your-repo-name.git
+
+    # The path within the repo where the Helm chart is located
+    path: helm/my-python-app
+
+    # The branch or tag to track
+    targetRevision: HEAD
+
+  # Destination defines where the application will be deployed
+  destination:
+    # The Kubernetes API server of the target cluster
+    server: "https://kubernetes.default.svc"
+    # The namespace in the target cluster to deploy to
+    namespace: default
+
+  # Sync policy defines how Argo CD synchronizes the application
+  syncPolicy:
+    automated:
+      # If true, Argo CD will automatically prune resources that are no longer in Git
+      prune: true
+      # If true, Argo CD will automatically sync when it detects a new commit
+      selfHeal: true

@@ -1,0 +1,22 @@
+# This file defines the Kubernetes Service object
+apiVersion: v1
+kind: Service
+metadata:
+  # The name of the service is derived from our helper template
+  name: {{ include "my-python-app.fullname" . }}
+  labels:
+    # The labels are also derived from a helper template
+    {{- include "my-python-app.labels" . | nindent 4 }}
+spec:
+  # The type of service is taken from values.yaml
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      # The targetPort should match the containerPort in the deployment
+      targetPort: 5000
+      protocol: TCP
+      name: http
+  selector:
+    # This selector must match the pod labels to route traffic correctly
+    app.kubernetes.io/name: {{ include "my-python-app.fullname" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
