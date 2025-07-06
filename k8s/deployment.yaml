@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: asia-south1-docker.pkg.dev/ace-mile-465117-t8/my-python-repo/my-python-app:v1.0.1 # <--- IMPORTANT: Update this line
+        image: asia-south1-docker.pkg.dev/ace-mile-465117-t8/my-python-repo/my-python-app:v1.0.2 # <--- IMPORTANT: Update this line
         ports:
         - containerPort: 5000 # Default Flask port
