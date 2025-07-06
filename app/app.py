@@ -19,7 +19,7 @@ def hello_world():
 
     # Create the response string
     return f"""
-    <h3>Hello from your Python GitOps App!</h3>
+    <h3>Hello from Ashish To 1st task :)</h3>
     <p>This response was served by pod: <b>{hostname}</b></p>
     <p>Server time: {current_time}</p>
     """
