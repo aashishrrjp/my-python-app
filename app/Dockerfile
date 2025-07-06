@@ -9,8 +9,8 @@ WORKDIR /app
 # Copy the requirements file into the container at /app
 # (In this simple case, we install Flask directly)
 # For a real app, you would copy a requirements.txt file first:
-# COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Install Flask
 RUN pip install Flask==2.1.2
