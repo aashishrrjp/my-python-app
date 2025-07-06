@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app-deployment
+  labels:
+    app: python-app
+spec:
+  replicas: 2 # Number of instances of your app
+  selector:
+    matchLabels:
+      app: python-app
+  template:
+    metadata:
+      labels:
+        app: python-app
+    spec:
+      containers:
+      - name: python-app
+        image: asia-south1-docker.pkg.dev/ace-mile-465117-t8/my-python-repo/my-python-app:v1.0.0 # <--- IMPORTANT: Update this line
+        ports:
+        - containerPort: 5000 # Default Flask port
